@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:boats_challenge/Bloc/dark_mode_state.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final darkMode = DarkModeState();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -20,9 +20,11 @@ class SettingsPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Icon(
-                      Platform.isAndroid
+                      kIsWeb
                           ? Icons.arrow_back
-                          : Icons.arrow_back_ios,
+                          : Platform.isAndroid
+                              ? Icons.arrow_back
+                              : Icons.arrow_back_ios,
                       size: 30,
                     ),
                   ),
